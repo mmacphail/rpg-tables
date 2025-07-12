@@ -305,6 +305,160 @@ const tables = {
             ["Mort", "Solennel"],
             ["Mariage", "Optimiste"]
         ]
+    },
+    // Person Tables
+    apparence: {
+        title: "APPARENCE",
+        data: [
+            ["Délicat", "En armure"],
+            ["Petit", "En haillons"],
+            ["Robuste", "Vibrant"],
+            ["Dur", "Grossier"],
+            ["Dépenaillé", "Éclectique"],
+            ["Froid", "Traditionnel"],
+            ["Chaleureux", "Confortable"],
+            ["Jeune", "Voyant"],
+            ["Doux", "Terne"],
+            ["Malade", "Décoré"],
+            ["Grand", "Fonctionnel"],
+            ["Rude", "Élégant"]
+        ]
+    },
+    voix: {
+        title: "VOIX",
+        data: [
+            ["Chuchotante", "Formelle"],
+            ["Apaisante", "Poétique"],
+            ["Lisse", "Précise"],
+            ["Plate", "Intense"],
+            ["Marmonnante", "Décousue"],
+            ["Faible", "Détachée"],
+            ["Forte", "Passionnée"],
+            ["Hésitante", "Tendue"],
+            ["Mélodieuse", "Détendue"],
+            ["Grave", "Émoussée"],
+            ["Erratique", "Tapageuse"],
+            ["Tonnante", "Amicale"]
+        ]
+    },
+    personnalite: {
+        title: "PERSONNALITÉ",
+        data: [
+            ["Prudent", "Botanique"],
+            ["Spirituel", "Histoire"],
+            ["Intellectuel", "Musique"],
+            ["Ambitieux", "Jeu"],
+            ["Serein", "Animaux"],
+            ["Vertueux", "Art"],
+            ["Empathique", "Cuisine"],
+            ["Instable", "Artisanat"],
+            ["Volant", "Pêche"],
+            ["Mélancolique", "Mode"],
+            ["Cynique", "Chasse"],
+            ["Impulsif", "Histoires"]
+        ]
+    },
+    relation: {
+        title: "RELATION",
+        data: [
+            ["Adorant", "Parent"],
+            ["Réticent", "Ami"],
+            ["Secret", "Amoureux"],
+            ["Éloigné", "Époux"],
+            ["Détesté", "Soutien"],
+            ["Distant", "Allié"],
+            ["Harmonieux", "Rival"],
+            ["Intime", "Successeur"],
+            ["Récent", "Mentor"],
+            ["Juré", "Pair"],
+            ["Tumultueux", "Ennemi"],
+            ["Plein de ressentiment", "Gardien"]
+        ]
+    },
+    desir: {
+        title: "DÉSIR",
+        data: [
+            ["Évasion", "Liberté"],
+            ["Richesse", "Amour"],
+            ["Statut", "Héritage"],
+            ["Connaissance", "Récupération"],
+            ["Maîtrise", "Vengeance"],
+            ["Héritage", "Devoir"],
+            ["Mariage", "Peur"],
+            ["Vérité", "Culpabilité"],
+            ["Voyage", "Reconnaissance"],
+            ["Pouvoir", "Défi"],
+            ["Sécurité", "Curiosité"],
+            ["Pardon", "Haine"]
+        ]
+    },
+    tache: {
+        title: "TÂCHE",
+        data: [
+            ["Enquêter", "Chevalier"],
+            ["Capturer", "Voyant"],
+            ["Détruire", "Vassaux"],
+            ["Transporter", "Bétail"],
+            ["Récupérer", "Monument"],
+            ["Réparer", "Or"],
+            ["Briser", "Ruine"],
+            ["Garder", "Animaux"],
+            ["Aider", "Habitation"],
+            ["Sauver", "Exploitation"],
+            ["Dissimuler", "Pont"],
+            ["Chasser", "Guerre"]
+        ]
+    },
+    origine: {
+        title: "ORIGINE",
+        data: [
+            ["Privé", "Guerre"],
+            ["Pauvre", "Migration"],
+            ["Paria", "Équitation"],
+            ["Militaire", "Étude"],
+            ["Insulaire", "Exil"],
+            ["Nomade", "Joie"],
+            ["Charlatanerie", "Maladie"],
+            ["Mercantile", "Évasion"],
+            ["Paysan", "Blessure"],
+            ["Prestigieux", "Amitié"],
+            ["Académique", "Exécution"],
+            ["Choyé", "Romance"]
+        ]
+    },
+    maladie: {
+        title: "MALADIE",
+        data: [
+            ["Caché", "Insomnie"],
+            ["Doux", "Migraines"],
+            ["Intermittent", "Arthrite"],
+            ["Croissant", "Nausée"],
+            ["Médicamenté", "Fixation"],
+            ["Nié", "Cécité"],
+            ["Inexpliqué", "Surdité"],
+            ["Constant", "Mélancolie"],
+            ["Diminuant", "Tremblements"],
+            ["Permanent", "Fragilité"],
+            ["Débilitant", "Toux"],
+            ["Évident", "Léthargie"]
+        ]
+    },
+    heraldique: {
+        title: "HÉRALDIQUE",
+        data: [
+            ["Clair", "Bête"],
+            ["Chaud", "Oiseau"],
+            ["Terreux", "Poisson"],
+            ["Riche", "Arme"],
+            ["Métallique", "Couronne"],
+            ["Brillant", "Arbre"],
+            ["Gris", "Fleur"],
+            ["Bijouté", "Partie du corps"],
+            ["Terne", "Structure"],
+            ["Aéré", "Anneau"],
+            ["Froid", "Outil"],
+            ["Doré", "Étoile"]
+        ]
     }
 };
 
@@ -315,7 +469,7 @@ let currentPane = 'nature';
 const paneMapping = {
     nature: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde'],
     civilisation: ['domaine', 'basse_cour', 'donjon', 'nourriture', 'biens', 'luxes', 'drame', 'malheur', 'nouvelles'],
-    personne: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde'],
+    personne: ['apparence', 'voix', 'personnalite', 'relation', 'desir', 'tache', 'origine', 'maladie', 'heraldique'],
     combat: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde']
 };
 
