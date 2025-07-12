@@ -75,7 +75,7 @@ function showPane(pane) {
     
     // Update button states
     document.querySelectorAll('.pane-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    document.querySelector(`[data-pane="${pane}"]`).classList.add('active');
     
     currentPane = pane;
 }
@@ -338,3 +338,20 @@ function rollAllTables() {
 
 // Initialize
 loadTables();
+
+// Add event listeners when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners for pane navigation buttons
+    document.querySelectorAll('.pane-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const pane = this.dataset.pane;
+            showPane(pane);
+        });
+    });
+    
+    // Add event listener for roll current pane button
+    document.getElementById('roll-current-pane').addEventListener('click', rollAllDice);
+    
+    // Add event listener for roll all tables button
+    document.getElementById('roll-all-tables').addEventListener('click', rollAllTables);
+});

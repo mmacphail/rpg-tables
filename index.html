@@ -13,17 +13,17 @@
             <p>Générateur d'éléments narratifs pour jeux de rôle</p>
             
             <div class="pane-navigation">
-                <button class="pane-btn active" onclick="showPane('nature')">🌿 Nature</button>
-                <button class="pane-btn" onclick="showPane('civilisation')">🏛️ Civilisation</button>
-                <button class="pane-btn" onclick="showPane('personne')">👥 Personne</button>
-                <button class="pane-btn" onclick="showPane('combat')">⚔️ Combat</button>
+                <button class="pane-btn active" data-pane="nature">🌿 Nature</button>
+                <button class="pane-btn" data-pane="civilisation">🏛️ Civilisation</button>
+                <button class="pane-btn" data-pane="personne">👥 Personne</button>
+                <button class="pane-btn" data-pane="combat">⚔️ Combat</button>
             </div>
             
             <div class="roll-section">
-                <button class="roll-btn" onclick="rollAllDice()">
+                <button class="roll-btn" id="roll-current-pane">
                     <span class="dice-icon">🎲</span> Lancer tous les dés
                 </button>
-                <button class="roll-btn roll-all-btn" onclick="rollAllTables()">
+                <button class="roll-btn roll-all-btn" id="roll-all-tables">
                     <span class="dice-icon">🎲🎲</span> Lancer sur toutes les tables
                 </button>
             </div>
