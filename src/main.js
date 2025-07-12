@@ -4,7 +4,7 @@ let tables = {};
 // Function to load tables from JSON
 async function loadTables() {
     try {
-        const response = await fetch('./src/tables.json');
+        const response = await fetch('./tables.json');
         tables = await response.json();
         
         // Initialize the application after tables are loaded
