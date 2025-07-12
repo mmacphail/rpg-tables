@@ -8,6 +8,7 @@ async function loadTables() {
         tables = await response.json();
         
         // Initialize the application after tables are loaded
+        generatePanes();
         loadAllTables();
     } catch (error) {
         console.error('Error loading tables:', error);
@@ -161,6 +162,101 @@ function rollAllDice() {
 
     document.getElementById('result-section').style.display = 'block';
     document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Function to generate all panes dynamically
+function generatePanes() {
+    const tablesContainer = document.getElementById('tables-panes');
+    tablesContainer.innerHTML = '';
+    
+    // Define pane configurations
+    const paneConfigs = {
+        nature: { name: 'nature', displayName: 'Nature', visible: true },
+        civilisation: { name: 'civilisation', displayName: 'Civilisation', visible: false },
+        personne: { name: 'personne', displayName: 'Personne', visible: false },
+        combat: { name: 'combat', displayName: 'Combat', visible: false }
+    };
+    
+    // Generate each pane
+    Object.values(paneConfigs).forEach(paneConfig => {
+        const pane = createPane(paneConfig);
+        tablesContainer.appendChild(pane);
+    });
+}
+
+// Function to create a single pane
+function createPane(paneConfig) {
+    const pane = document.createElement('div');
+    pane.className = 'pane';
+    pane.id = `${paneConfig.name}-pane`;
+    pane.style.display = paneConfig.visible ? 'block' : 'none';
+    
+    const tablesGrid = document.createElement('div');
+    tablesGrid.className = 'tables-grid';
+    
+    // Get tables for this pane
+    const paneTables = paneMapping[paneConfig.name];
+    
+    paneTables.forEach(tableKey => {
+        if (tables[tableKey]) {
+            const tableContainer = createTableContainer(tableKey, paneConfig.name);
+            tablesGrid.appendChild(tableContainer);
+        }
+    });
+    
+    pane.appendChild(tablesGrid);
+    return pane;
+}
+
+// Function to create a single table container
+function createTableContainer(tableKey, paneName) {
+    const table = tables[tableKey];
+    const headers = columnHeaders[tableKey];
+    const suffix = getSuffixForPane(paneName);
+    
+    const container = document.createElement('div');
+    container.className = 'table-container';
+    
+    // Create table header
+    const header = document.createElement('div');
+    header.className = 'table-header';
+    header.textContent = table.title;
+    container.appendChild(header);
+    
+    // Create subheader
+    const subheader = document.createElement('div');
+    subheader.className = 'table-subheader';
+    
+    const numberCell = document.createElement('div');
+    numberCell.className = 'subheader-cell';
+    numberCell.textContent = '#';
+    subheader.appendChild(numberCell);
+    
+    headers.forEach(headerText => {
+        const headerCell = document.createElement('div');
+        headerCell.className = 'subheader-cell';
+        headerCell.textContent = headerText;
+        subheader.appendChild(headerCell);
+    });
+    
+    container.appendChild(subheader);
+    
+    // Create table body
+    const body = document.createElement('div');
+    body.id = `${tableKey}-body${suffix}`;
+    container.appendChild(body);
+    
+    return container;
+}
+
+// Helper function to get suffix for pane
+function getSuffixForPane(paneName) {
+    switch (paneName) {
+        case 'civilisation': return '-civ';
+        case 'personne': return '-pers';
+        case 'combat': return '-combat';
+        default: return '';
+    }
 }
 
 // Initialize
