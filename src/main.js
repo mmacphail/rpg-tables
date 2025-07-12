@@ -151,6 +151,160 @@ const tables = {
             ["Blanc", "Île"],
             ["Doux", "Montagne"]
         ]
+    },
+    // Civilization Tables
+    domaine: {
+        title: "DOMAINE",
+        data: [
+            ["Sombre", "Tourelles"],
+            ["Ruiné", "Tour"],
+            ["Hostile", "Mur"],
+            ["Ancien", "Remparts"],
+            ["Orné", "Citadelle"],
+            ["Sauvage", "Porte"],
+            ["Immaculé", "Flèche"],
+            ["Fortifié", "Dôme"],
+            ["Inachevé", "Balises"],
+            ["Accueillant", "Pont"],
+            ["Fier", "Piliers"],
+            ["Lumineux", "Douves"]
+        ]
+    },
+    basse_cour: {
+        title: "BASSE-COUR",
+        data: [
+            ["Crasseux", "Marché"],
+            ["Abandonné", "Forge"],
+            ["Joyeux", "Bibliothèque"],
+            ["Sophistiqué", "Fontaine"],
+            ["Industrieux", "Temple"],
+            ["Humble", "Forum"],
+            ["Majestueux", "Tombe"],
+            ["Sanctifié", "Jardin"],
+            ["Rustique", "Salle"],
+            ["Solennel", "Ateliers"],
+            ["Animé", "Arène"],
+            ["Immaculé", "Garnison"]
+        ]
+    },
+    donjon: {
+        title: "DONJON",
+        data: [
+            ["Foyer", "Bois de cerf"],
+            ["Trône", "Argent"],
+            ["Musiciens", "Héraldique"],
+            ["Bassin", "Os"],
+            ["Conseillers", "Fleurs"],
+            ["Serviteurs", "Écritures"],
+            ["Sanctuaire", "Joyaux"],
+            ["Table", "Couronnes"],
+            ["Reliquaire", "Bougies"],
+            ["Chaudron", "Fourrure"],
+            ["Lustre", "Tapisseries"],
+            ["Gardes", "Boucliers"]
+        ]
+    },
+    nourriture: {
+        title: "NOURRITURE",
+        data: [
+            ["Épicé", "Poisson"],
+            ["Herbal", "Fruit"],
+            ["Croquant", "Ragoût"],
+            ["Aigre", "Champignons"],
+            ["Sec", "Tarte"],
+            ["Fermenté", "Fromage"],
+            ["Salé", "Noix"],
+            ["Humide", "Gâteau"],
+            ["Gras", "Porridge"],
+            ["Moelleux", "Pain"],
+            ["Sucré", "Légume"],
+            ["Doux", "Viande"]
+        ]
+    },
+    biens: {
+        title: "BIENS",
+        data: [
+            ["Militaire", "Textile"],
+            ["Abondant", "Bétail"],
+            ["Traditionnel", "Grain"],
+            ["Spécialisé", "Viande"],
+            ["Industrieux", "Outils"],
+            ["Innovant", "Pierre"],
+            ["Secret", "Bois"],
+            ["Simple", "Poterie"],
+            ["Solide", "Métal"],
+            ["Décoré", "Cuir"],
+            ["Fin", "Miel"],
+            ["Chanceux", "Herbe"]
+        ]
+    },
+    luxes: {
+        title: "LUXES",
+        data: [
+            ["Antique", "Bijou"],
+            ["Complexe", "Vin"],
+            ["Unique", "Épice"],
+            ["Rare", "Parfum"],
+            ["Hasardeux", "Soie"],
+            ["Parfait", "Fourrure"],
+            ["Lumineux", "Œuvre d'art"],
+            ["Perdu", "Épée"],
+            ["Ésotérique", "Créature"],
+            ["Sacré", "Minerai"],
+            ["Mystique", "Racine"],
+            ["Magnifique", "Écriture"]
+        ]
+    },
+    drame: {
+        title: "DRAME",
+        data: [
+            ["Trahison", "Bagarre"],
+            ["Jalousie", "Poison"],
+            ["Rivalité", "Serment"],
+            ["Infidélité", "Festin"],
+            ["Coup d'État", "Lettre"],
+            ["Ambition", "Déguisement"],
+            ["Rédemption", "Héritage"],
+            ["Révélation", "Assassin"],
+            ["Colère", "Famille"],
+            ["Avidité", "Alcool"],
+            ["Bannissement", "Chantage"],
+            ["Manipulation", "Or"]
+        ]
+    },
+    malheur: {
+        title: "MALHEUR",
+        data: [
+            ["Secret", "Maladie"],
+            ["Violent", "Famine"],
+            ["Menaçant", "Raids"],
+            ["Soudain", "Invasion"],
+            ["Continu", "Enlèvement"],
+            ["Prophétisé", "Tempête"],
+            ["Mystérieux", "Incendie"],
+            ["Sanctifié", "Révolte"],
+            ["Invisible", "Exode"],
+            ["Vaste", "Bête"],
+            ["Croissant", "Meurtre"],
+            ["Dissimulé", "Vol"]
+        ]
+    },
+    nouvelles: {
+        title: "NOUVELLES",
+        data: [
+            ["Duel", "Pensif"],
+            ["Naissance", "Joyeux"],
+            ["Marché", "Content"],
+            ["Procès", "Divisé"],
+            ["Rituel", "Furieux"],
+            ["Mercenaires", "Sceptique"],
+            ["Festival", "Adorant"],
+            ["Tournoi", "Nostalgique"],
+            ["Châtiment", "Unifié"],
+            ["Spectacle", "Sombre"],
+            ["Mort", "Solennel"],
+            ["Mariage", "Optimiste"]
+        ]
     }
 };
 
@@ -160,7 +314,7 @@ let currentPane = 'nature';
 // Define which tables belong to each pane
 const paneMapping = {
     nature: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde'],
-    civilisation: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde'],
+    civilisation: ['domaine', 'basse_cour', 'donjon', 'nourriture', 'biens', 'luxes', 'drame', 'malheur', 'nouvelles'],
     personne: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde'],
     combat: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde']
 };
