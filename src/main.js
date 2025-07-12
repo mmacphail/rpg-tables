@@ -459,6 +459,160 @@ const tables = {
             ["Froid", "Outil"],
             ["Doré", "Étoile"]
         ]
+    },
+    // Combat Tables
+    soldat: {
+        title: "SOLDAT",
+        data: [
+            ["Mobile", "Escarmoucheur"],
+            ["Réticent", "Archer"],
+            ["Monté", "Éclaireur"],
+            ["Renommé", "Milice"],
+            ["Zélé", "Garde"],
+            ["Conscrit", "Infiltrateur"],
+            ["Lâche", "Pillard"],
+            ["Lourd", "Vétéran"],
+            ["Sanguinaire", "Infanterie"],
+            ["Fantaisiste", "Cavalier"],
+            ["Redoutable", "Chargeur"],
+            ["Mercenaire", "Chevalier"]
+        ]
+    },
+    arme: {
+        title: "ARME",
+        data: [
+            ["Courte", "Lame"],
+            ["Pôle", "Lance"],
+            ["Chaîne", "Hache"],
+            ["Barbelé", "Masse"],
+            ["Fourchu", "Couperet"],
+            ["Incurvé", "Marteau"],
+            ["Lesté", "Pique"],
+            ["Double", "Crochet"],
+            ["Croisé", "Gourdin"],
+            ["Lançant", "Bâton"],
+            ["Fin", "Croc"],
+            ["Long", "Épée"]
+        ]
+    },
+    manoeuvres: {
+        title: "MANŒUVRES",
+        data: [
+            ["Feinte", "Démoraliser"],
+            ["Frappe", "Confondre"],
+            ["Vantardise", "Exploiter"],
+            ["Défendre", "Bloquer"],
+            ["Négocier", "Relocaliser"],
+            ["Flurry", "Observer"],
+            ["Ruée", "Vaincre"],
+            ["Narguer", "Exposer"],
+            ["Coup", "Surprendre"],
+            ["Charger", "Tituber"],
+            ["Assaut", "Affaiblir"],
+            ["Provoquer", "Intimider"]
+        ]
+    },
+    conflit: {
+        title: "CONFLIT",
+        data: [
+            ["Frontière", "Guerre"],
+            ["Religion", "Raids"],
+            ["Succession", "Animosité"],
+            ["Ressource", "Trêve"],
+            ["Dette", "Escarmouches"],
+            ["Trahison", "Impasse"],
+            ["Vol", "Occupation"],
+            ["Conquête", "Impasse"],
+            ["Mariage", "Blocus"],
+            ["Tromperie", "Tension"],
+            ["Voie navigable", "Négociations"],
+            ["Bain de sang", "Négociations"]
+        ]
+    },
+    duel: {
+        title: "DUEL",
+        data: [
+            ["Joute", "Chronométré"],
+            ["Épées", "Fosse"],
+            ["Partenaire", "Pont"],
+            ["Équipe", "Immobile"],
+            ["Sans armure", "Labyrinthe"],
+            ["Enchaîné", "Archers"],
+            ["Sang", "Feu"],
+            ["Mort", "Bêtes"],
+            ["Reddition", "Boue"],
+            ["Jugé", "Nuit"],
+            ["Émoussé", "Eau"],
+            ["Javelots", "Cage"]
+        ]
+    },
+    champ_bataille: {
+        title: "CHAMP DE BATAILLE",
+        data: [
+            ["Rivière", "Fumée"],
+            ["Ruines", "Boue"],
+            ["Colline", "Mouches"],
+            ["Forêt", "Tranchées"],
+            ["Lac", "Tour"],
+            ["Avant-poste", "Rochers"],
+            ["Col", "Fleurs"],
+            ["Ferme", "Ruisseau"],
+            ["Sentier", "Épines"],
+            ["Pont", "Puanteur"],
+            ["Mur", "Ravin"],
+            ["Habitation", "Tombes"]
+        ]
+    },
+    deploiement: {
+        title: "DÉPLOIEMENT",
+        data: [
+            ["Agressif", "Ligne"],
+            ["Mobile", "Colonne"],
+            ["Serré", "Chevron"],
+            ["Trompeur", "Rangs"],
+            ["Blindé", "Carré"],
+            ["Rigide", "Cercle"],
+            ["Flexible", "Flanc"],
+            ["Ouvert", "Brosse"],
+            ["Focalisé", "Bloc"],
+            ["Dispersé", "Carré"],
+            ["Renforcé", "Coin"],
+            ["Défensif", "Dispersion"]
+        ]
+    },
+    strategie: {
+        title: "STRATÉGIE",
+        data: [
+            ["Encercler", "Obscurité"],
+            ["Capturer", "Réserves"],
+            ["Assaut", "Diversion"],
+            ["Harceler", "Trahison"],
+            ["Pilier", "Artillerie"],
+            ["Dépasser", "Camouflage"],
+            ["Embuscade", "Bluff"],
+            ["Submerger", "Retard"],
+            ["Blocus", "Leurre"],
+            ["Diviser", "Appât"],
+            ["Focus", "Sacrifice"],
+            ["Contre", "Feu"]
+        ]
+    },
+    evenement: {
+        title: "ÉVÉNEMENT",
+        data: [
+            ["Alliés", "Effondrement"],
+            ["Moral", "Attaque"],
+            ["Météo", "Massacre"],
+            ["Terrain", "Impasse"],
+            ["Stratégie", "Bloqué"],
+            ["Discipline", "Fléchir"],
+            ["Animal", "Sabotage"],
+            ["Opportunistes", "Disperser"],
+            ["Déception", "Charge"],
+            ["Leader", "Confusion"],
+            ["Butin", "Aggravation"],
+            ["Armes", "Découverte"]
+        ]
     }
 };
 
@@ -470,7 +624,7 @@ const paneMapping = {
     nature: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde'],
     civilisation: ['domaine', 'basse_cour', 'donjon', 'nourriture', 'biens', 'luxes', 'drame', 'malheur', 'nouvelles'],
     personne: ['apparence', 'voix', 'personnalite', 'relation', 'desir', 'tache', 'origine', 'maladie', 'heraldique'],
-    combat: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde']
+    combat: ['soldat', 'arme', 'manoeuvres', 'conflit', 'duel', 'champ_bataille', 'deploiement', 'strategie', 'evenement']
 };
 
 function showPane(pane) {
