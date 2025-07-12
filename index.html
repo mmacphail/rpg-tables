@@ -12,6 +12,13 @@
             <h1>🎲 Tables JDR Françaises</h1>
             <p>Générateur d'éléments narratifs pour jeux de rôle</p>
             
+            <div class="pane-navigation">
+                <button class="pane-btn active" onclick="showPane('nature')">🌿 Nature</button>
+                <button class="pane-btn" onclick="showPane('civilisation')">🏛️ Civilisation</button>
+                <button class="pane-btn" onclick="showPane('personne')">👥 Personne</button>
+                <button class="pane-btn" onclick="showPane('combat')">⚔️ Combat</button>
+            </div>
+            
             <div class="roll-section">
                 <button class="roll-btn" onclick="rollAllDice()">
                     <span class="dice-icon">🎲</span> Lancer tous les dés
@@ -19,95 +26,385 @@
             </div>
         </div>
 
-        <div class="tables-grid">
-            <div class="table-container">
-                <div class="table-header">TERRE</div>
-                <div class="table-subheader">
-                    <div class="subheader-cell">#</div>
-                    <div class="subheader-cell">Caractère</div>
-                    <div class="subheader-cell">Paysage</div>
+        <div class="tables-panes">
+            <!-- Nature Pane -->
+            <div class="pane" id="nature-pane" style="display: block;">
+                <div class="tables-grid">
+                    <div class="table-container">
+                        <div class="table-header">TERRE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Caractère</div>
+                            <div class="subheader-cell">Paysage</div>
+                        </div>
+                        <div id="terre-body"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">CIEL</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Ton</div>
+                            <div class="subheader-cell">Texture</div>
+                        </div>
+                        <div id="ciel-body"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">EAU</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Ton</div>
+                            <div class="subheader-cell">Texture</div>
+                        </div>
+                        <div id="eau-body"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">MÉTÉO</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Description</div>
+                            <div class="subheader-cell">Élément</div>
+                        </div>
+                        <div id="meteo-body"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">FLORE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="flore-body"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">FAUNE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="faune-body"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">ÉLÉMENT</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="element-body"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">MERVEILLE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Thème</div>
+                            <div class="subheader-cell">Élément</div>
+                        </div>
+                        <div id="merveille-body"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">OUTREMONDE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Caractère</div>
+                            <div class="subheader-cell">Paysage</div>
+                        </div>
+                        <div id="outremonde-body"></div>
+                    </div>
                 </div>
-                <div id="terre-body"></div>
             </div>
 
-            <div class="table-container">
-                <div class="table-header">CIEL</div>
-                <div class="table-subheader">
-                    <div class="subheader-cell">#</div>
-                    <div class="subheader-cell">Ton</div>
-                    <div class="subheader-cell">Texture</div>
+            <!-- Civilisation Pane -->
+            <div class="pane" id="civilisation-pane" style="display: none;">
+                <div class="tables-grid">
+                    <div class="table-container">
+                        <div class="table-header">TERRE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Caractère</div>
+                            <div class="subheader-cell">Paysage</div>
+                        </div>
+                        <div id="terre-body-civ"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">CIEL</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Ton</div>
+                            <div class="subheader-cell">Texture</div>
+                        </div>
+                        <div id="ciel-body-civ"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">EAU</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Ton</div>
+                            <div class="subheader-cell">Texture</div>
+                        </div>
+                        <div id="eau-body-civ"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">MÉTÉO</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Description</div>
+                            <div class="subheader-cell">Élément</div>
+                        </div>
+                        <div id="meteo-body-civ"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">FLORE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="flore-body-civ"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">FAUNE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="faune-body-civ"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">ÉLÉMENT</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="element-body-civ"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">MERVEILLE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Thème</div>
+                            <div class="subheader-cell">Élément</div>
+                        </div>
+                        <div id="merveille-body-civ"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">OUTREMONDE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Caractère</div>
+                            <div class="subheader-cell">Paysage</div>
+                        </div>
+                        <div id="outremonde-body-civ"></div>
+                    </div>
                 </div>
-                <div id="ciel-body"></div>
             </div>
 
-            <div class="table-container">
-                <div class="table-header">EAU</div>
-                <div class="table-subheader">
-                    <div class="subheader-cell">#</div>
-                    <div class="subheader-cell">Ton</div>
-                    <div class="subheader-cell">Texture</div>
+            <!-- Personne Pane -->
+            <div class="pane" id="personne-pane" style="display: none;">
+                <div class="tables-grid">
+                    <div class="table-container">
+                        <div class="table-header">TERRE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Caractère</div>
+                            <div class="subheader-cell">Paysage</div>
+                        </div>
+                        <div id="terre-body-pers"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">CIEL</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Ton</div>
+                            <div class="subheader-cell">Texture</div>
+                        </div>
+                        <div id="ciel-body-pers"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">EAU</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Ton</div>
+                            <div class="subheader-cell">Texture</div>
+                        </div>
+                        <div id="eau-body-pers"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">MÉTÉO</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Description</div>
+                            <div class="subheader-cell">Élément</div>
+                        </div>
+                        <div id="meteo-body-pers"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">FLORE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="flore-body-pers"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">FAUNE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="faune-body-pers"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">ÉLÉMENT</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="element-body-pers"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">MERVEILLE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Thème</div>
+                            <div class="subheader-cell">Élément</div>
+                        </div>
+                        <div id="merveille-body-pers"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">OUTREMONDE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Caractère</div>
+                            <div class="subheader-cell">Paysage</div>
+                        </div>
+                        <div id="outremonde-body-pers"></div>
+                    </div>
                 </div>
-                <div id="eau-body"></div>
             </div>
 
-            <div class="table-container">
-                <div class="table-header">MÉTÉO</div>
-                <div class="table-subheader">
-                    <div class="subheader-cell">#</div>
-                    <div class="subheader-cell">Description</div>
-                    <div class="subheader-cell">Élément</div>
-                </div>
-                <div id="meteo-body"></div>
-            </div>
+            <!-- Combat Pane -->
+            <div class="pane" id="combat-pane" style="display: none;">
+                <div class="tables-grid">
+                    <div class="table-container">
+                        <div class="table-header">TERRE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Caractère</div>
+                            <div class="subheader-cell">Paysage</div>
+                        </div>
+                        <div id="terre-body-combat"></div>
+                    </div>
 
-            <div class="table-container">
-                <div class="table-header">FLORE</div>
-                <div class="table-subheader">
-                    <div class="subheader-cell">#</div>
-                    <div class="subheader-cell">Nature</div>
-                    <div class="subheader-cell">Forme</div>
-                </div>
-                <div id="flore-body"></div>
-            </div>
+                    <div class="table-container">
+                        <div class="table-header">CIEL</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Ton</div>
+                            <div class="subheader-cell">Texture</div>
+                        </div>
+                        <div id="ciel-body-combat"></div>
+                    </div>
 
-            <div class="table-container">
-                <div class="table-header">FAUNE</div>
-                <div class="table-subheader">
-                    <div class="subheader-cell">#</div>
-                    <div class="subheader-cell">Nature</div>
-                    <div class="subheader-cell">Forme</div>
-                </div>
-                <div id="faune-body"></div>
-            </div>
+                    <div class="table-container">
+                        <div class="table-header">EAU</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Ton</div>
+                            <div class="subheader-cell">Texture</div>
+                        </div>
+                        <div id="eau-body-combat"></div>
+                    </div>
 
-            <div class="table-container">
-                <div class="table-header">ÉLÉMENT</div>
-                <div class="table-subheader">
-                    <div class="subheader-cell">#</div>
-                    <div class="subheader-cell">Nature</div>
-                    <div class="subheader-cell">Forme</div>
-                </div>
-                <div id="element-body"></div>
-            </div>
+                    <div class="table-container">
+                        <div class="table-header">MÉTÉO</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Description</div>
+                            <div class="subheader-cell">Élément</div>
+                        </div>
+                        <div id="meteo-body-combat"></div>
+                    </div>
 
-            <div class="table-container">
-                <div class="table-header">MERVEILLE</div>
-                <div class="table-subheader">
-                    <div class="subheader-cell">#</div>
-                    <div class="subheader-cell">Thème</div>
-                    <div class="subheader-cell">Élément</div>
-                </div>
-                <div id="merveille-body"></div>
-            </div>
+                    <div class="table-container">
+                        <div class="table-header">FLORE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="flore-body-combat"></div>
+                    </div>
 
-            <div class="table-container">
-                <div class="table-header">OUTREMONDE</div>
-                <div class="table-subheader">
-                    <div class="subheader-cell">#</div>
-                    <div class="subheader-cell">Caractère</div>
-                    <div class="subheader-cell">Paysage</div>
+                    <div class="table-container">
+                        <div class="table-header">FAUNE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="faune-body-combat"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">ÉLÉMENT</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Nature</div>
+                            <div class="subheader-cell">Forme</div>
+                        </div>
+                        <div id="element-body-combat"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">MERVEILLE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Thème</div>
+                            <div class="subheader-cell">Élément</div>
+                        </div>
+                        <div id="merveille-body-combat"></div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">OUTREMONDE</div>
+                        <div class="table-subheader">
+                            <div class="subheader-cell">#</div>
+                            <div class="subheader-cell">Caractère</div>
+                            <div class="subheader-cell">Paysage</div>
+                        </div>
+                        <div id="outremonde-body-combat"></div>
+                    </div>
                 </div>
-                <div id="outremonde-body"></div>
             </div>
         </div>
 

@@ -155,26 +155,61 @@ const tables = {
 };
 
 let lastHighlighted = {};
+let currentPane = 'nature';
+
+// Define which tables belong to each pane
+const paneMapping = {
+    nature: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde'],
+    civilisation: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde'],
+    personne: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde'],
+    combat: ['terre', 'ciel', 'eau', 'meteo', 'flore', 'faune', 'element', 'merveille', 'outremonde']
+};
+
+function showPane(pane) {
+    // Hide all panes
+    document.querySelectorAll('.pane').forEach(p => p.style.display = 'none');
+    
+    // Show selected pane
+    document.getElementById(pane + '-pane').style.display = 'block';
+    
+    // Update button states
+    document.querySelectorAll('.pane-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    currentPane = pane;
+}
 
 function loadAllTables() {
-    Object.keys(tables).forEach(category => {
+    // Load tables for all panes
+    ['nature', 'civilisation', 'personne', 'combat'].forEach(pane => {
+        loadTablesForPane(pane);
+    });
+}
+
+function loadTablesForPane(pane) {
+    const suffix = pane === 'nature' ? '' : '-' + (pane === 'civilisation' ? 'civ' : pane === 'personne' ? 'pers' : 'combat');
+    
+    paneMapping[pane].forEach(category => {
         const table = tables[category];
-        const tableBody = document.getElementById(category + '-body');
+        const tableBody = document.getElementById(category + '-body' + suffix);
         
-        tableBody.innerHTML = '';
-        
-        table.data.forEach((row, index) => {
-            const rowElement = document.createElement('div');
-            rowElement.className = 'table-row';
-            rowElement.dataset.category = category;
-            rowElement.dataset.index = index;
-            rowElement.innerHTML = `
-                <div class="row-number">${index + 1}</div>
-                <div class="row-content">${row[0]}</div>
-                <div class="row-content">${row[1]}</div>
-            `;
-            tableBody.appendChild(rowElement);
-        });
+        if (tableBody) {
+            tableBody.innerHTML = '';
+            
+            table.data.forEach((row, index) => {
+                const rowElement = document.createElement('div');
+                rowElement.className = 'table-row';
+                rowElement.dataset.category = category;
+                rowElement.dataset.pane = pane;
+                rowElement.dataset.index = index;
+                rowElement.innerHTML = `
+                    <div class="row-number">${index + 1}</div>
+                    <div class="row-content">${row[0]}</div>
+                    <div class="row-content">${row[1]}</div>
+                `;
+                tableBody.appendChild(rowElement);
+            });
+        }
     });
 }
 
@@ -186,10 +221,10 @@ function rollAllDice() {
         diceIcon.classList.remove('dice-animation');
     }, 500);
 
-    // Clear previous highlights
-    Object.keys(lastHighlighted).forEach(category => {
-        if (lastHighlighted[category]) {
-            lastHighlighted[category].classList.remove('highlighted');
+    // Clear previous highlights for current pane
+    Object.keys(lastHighlighted).forEach(key => {
+        if (lastHighlighted[key] && key.includes(currentPane)) {
+            lastHighlighted[key].classList.remove('highlighted');
         }
     });
 
@@ -197,15 +232,21 @@ function rollAllDice() {
     const resultGrid = document.getElementById('result-grid');
     resultGrid.innerHTML = '';
 
-    Object.keys(tables).forEach(category => {
+    // Only roll for tables in current pane
+    paneMapping[currentPane].forEach(category => {
         const roll = Math.floor(Math.random() * 12) + 1;
         const result = tables[category].data[roll - 1];
         results[category] = { roll, result };
         
-        // Highlight row
-        const rows = document.querySelectorAll(`[data-category="${category}"]`);
-        lastHighlighted[category] = rows[roll - 1];
-        lastHighlighted[category].classList.add('highlighted');
+        // Highlight row in current pane
+        const suffix = currentPane === 'nature' ? '' : '-' + (currentPane === 'civilisation' ? 'civ' : currentPane === 'personne' ? 'pers' : 'combat');
+        const rows = document.querySelectorAll(`[data-category="${category}"][data-pane="${currentPane}"]`);
+        const highlightKey = category + '-' + currentPane;
+        
+        if (rows[roll - 1]) {
+            lastHighlighted[highlightKey] = rows[roll - 1];
+            lastHighlighted[highlightKey].classList.add('highlighted');
+        }
         
         // Create result item
         const resultItem = document.createElement('div');
