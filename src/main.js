@@ -25,6 +25,46 @@ const paneMapping = {
     combat: ['soldat', 'arme', 'manoeuvres', 'conflit', 'duel', 'champ_bataille', 'deploiement', 'strategie', 'evenement']
 };
 
+// Define column headers for each table
+const columnHeaders = {
+    terre: ['Caractère', 'Paysage'],
+    ciel: ['Ton', 'Texture'],
+    eau: ['Ton', 'Texture'],
+    meteo: ['Description', 'Élément'],
+    flore: ['Nature', 'Forme'],
+    faune: ['Nature', 'Forme'],
+    element: ['Nature', 'Forme'],
+    merveille: ['Thème', 'Élément'],
+    outremonde: ['Caractère', 'Paysage'],
+    domaine: ['Style', 'Caractéristique'],
+    basse_cour: ['Style', 'Caractéristique'],
+    donjon: ['Pièce maîtresse', 'Décoration'],
+    nourriture: ['Qualité', 'Type'],
+    biens: ['Thème', 'Type'],
+    luxes: ['Rareté', 'Type'],
+    drame: ['Thème', 'Détail'],
+    malheur: ['Description', 'Incident'],
+    nouvelles: ['Sujet', 'Humeur'],
+    apparence: ['Physique', 'Tenue'],
+    voix: ['Ton', 'Manière'],
+    personnalite: ['Comportement', 'Intérêt'],
+    relation: ['État', 'Connexion'],
+    desir: ['Ambition', 'Motif'],
+    tache: ['Action', 'Sujet'],
+    origine: ['Éducation', 'Souvenir'],
+    maladie: ['Descripteur', 'Symptôme'],
+    heraldique: ['Palette', 'Symbole'],
+    soldat: ['Qualité', 'Type'],
+    arme: ['Descripteur', 'Caractéristique'],
+    manoeuvres: ['Action', 'Intention'],
+    conflit: ['Dispute', 'Statut'],
+    duel: ['Stipulation', 'Tournure'],
+    champ_bataille: ['Caractéristique', 'Détail'],
+    deploiement: ['Style', 'Formation'],
+    strategie: ['Plan', 'Tournure'],
+    evenement: ['Sujet', 'Événement']
+};
+
 function showPane(pane) {
     // Hide all panes
     document.querySelectorAll('.pane').forEach(p => p.style.display = 'none');
@@ -111,9 +151,10 @@ function rollAllDice() {
         // Create result item
         const resultItem = document.createElement('div');
         resultItem.className = 'result-item';
+        const headers = columnHeaders[category];
         resultItem.innerHTML = `
             <h4>${tables[category].title} (${roll})</h4>
-            <div class="result-text">${result[0]} ${result[1]}</div>
+            <div class="result-text">${headers[0]}: ${result[0]}, ${headers[1]}: ${result[1]}</div>
         `;
         resultGrid.appendChild(resultItem);
     });
