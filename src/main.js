@@ -259,5 +259,82 @@ function getSuffixForPane(paneName) {
     }
 }
 
+function rollAllTables() {
+    const diceIcon = document.querySelector('.dice-icon');
+    diceIcon.classList.add('dice-animation');
+    
+    setTimeout(() => {
+        diceIcon.classList.remove('dice-animation');
+    }, 500);
+
+    // Clear all previous highlights across all panes
+    Object.keys(lastHighlighted).forEach(key => {
+        if (lastHighlighted[key]) {
+            lastHighlighted[key].classList.remove('highlighted');
+        }
+    });
+
+    const results = {};
+    const resultGrid = document.getElementById('result-grid');
+    resultGrid.innerHTML = '';
+
+    // Roll for ALL tables across ALL panes
+    Object.keys(paneMapping).forEach(paneName => {
+        paneMapping[paneName].forEach(category => {
+            const roll = Math.floor(Math.random() * 12) + 1;
+            const result = tables[category].data[roll - 1];
+            results[category] = { roll, result, pane: paneName };
+            
+            // Highlight row in the respective pane
+            const suffix = getSuffixForPane(paneName);
+            const rows = document.querySelectorAll(`[data-category="${category}"][data-pane="${paneName}"]`);
+            const highlightKey = category + '-' + paneName;
+            
+            if (rows[roll - 1]) {
+                lastHighlighted[highlightKey] = rows[roll - 1];
+                lastHighlighted[highlightKey].classList.add('highlighted');
+            }
+        });
+    });
+
+    // Create organized result display by pane
+    Object.keys(paneMapping).forEach(paneName => {
+        const paneResults = document.createElement('div');
+        paneResults.className = 'pane-results';
+        
+        const paneTitle = document.createElement('h4');
+        paneTitle.className = 'pane-results-title';
+        const paneDisplayNames = {
+            nature: '🌿 Nature',
+            civilisation: '🏛️ Civilisation',
+            personne: '👥 Personne',
+            combat: '⚔️ Combat'
+        };
+        paneTitle.textContent = paneDisplayNames[paneName];
+        paneResults.appendChild(paneTitle);
+        
+        const paneGrid = document.createElement('div');
+        paneGrid.className = 'pane-result-grid';
+        
+        paneMapping[paneName].forEach(category => {
+            const result = results[category];
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+            const headers = columnHeaders[category];
+            resultItem.innerHTML = `
+                <h5>${tables[category].title} (${result.roll})</h5>
+                <div class="result-text">${headers[0]}: ${result.result[0]}, ${headers[1]}: ${result.result[1]}</div>
+            `;
+            paneGrid.appendChild(resultItem);
+        });
+        
+        paneResults.appendChild(paneGrid);
+        resultGrid.appendChild(paneResults);
+    });
+
+    document.getElementById('result-section').style.display = 'block';
+    document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+}
+
 // Initialize
 loadTables();
